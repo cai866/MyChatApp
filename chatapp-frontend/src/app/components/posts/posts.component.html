@@ -1,0 +1,56 @@
+<ul class="collection col s12 m12 l10" *ngFor="let post of posts">
+    <li class="collection-item avatar">
+      <img src="https://res.cloudinary.com/dea6cvtau/image/upload/v{{post.user.picVersion}}/{{post.user.picId}}" class="circle">
+      <span class="title">{{post.username}}</span>
+      <span class="title secondary-content modal-trigger" *ngIf="post.username === user.username" (click)=" OpenEditModal(post)" data-target="modal"> 
+          Edit
+      </span>
+      <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+      <p class="time">{{TimeFromNow(post.created)}}
+         <br>@{{post.user.city}}, {{post.user.country}} 
+      </p>
+    
+    </li>
+    <div class="row">post.user
+        <div class="col s12">
+            <div class="card">
+               <div class="card-image" *ngIf="post.imgId">
+                    <img class="postImage" src="https://res.cloudinary.com/dea6cvtau/image/upload/v{{post.user.picVersion}}/{{post.user.picId}}">
+                </div> 
+                <div class="card-content">
+                    <p>{{post.post}}</p>
+                </div>
+                <div class="card-action">          <!-- if username not in Likes Array, we will assign the class notLiked, otherwise assigned liked-->
+                    <i (click) = "likePost(post)" [ngClass]="(!checkInLikesArray(post.likes, user.username)) ? 'notLiked' : 'liked'" class="material-icons">thumb_up</i>
+                    <span class="iconSpan">{{post.totalLikes}}</span>
+
+                    <i class="material-icons" (click)="openCommentBox(post)" [ngClass]="(!checkInLikesArray(post.comments, user.username)) ? 'notLiked' : 'liked'">chat</i>
+                    <span class="iconSpan" >{{post.comments.length}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </ul>
+
+  <div class="container">
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <h4>
+              Edit post
+              <button class="secondary-content deleteBtn" (click)="deletePost()">
+                    Delete
+              </button>
+
+          </h4>
+          <p *ngIf="postValue">{{postValue.post}}</p>
+          <form [formGroup]="editForm" novalidate>
+              <textarea formControlName="editedPost" class="materialize-textarea"></textarea>
+              <div class="modal-footer">
+                    <button class="button" (click)="CloseModal()">Close</button>&nbsp;
+                    <button class="btn" (click)="SubmitEditedPost()">Save</button>
+              </div>
+          </form>
+        </div>
+        
+      </div>
+  </div>

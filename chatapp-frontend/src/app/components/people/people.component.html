@@ -1,0 +1,36 @@
+<app-toolbar (onlineUsers)="online($event)"></app-toolbar>
+
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col s12 m4 l3">
+            <app-side></app-side>
+        </div>
+        
+        <div class="col s12 m8 l9">
+            <div class="row">
+                <div class="col s12 m6 l4 cardDiv" *ngFor="let user of users">
+                    <div class="card">
+                        <a (click)="viewUser(user)"> 
+                            <div class="card-image imgDiv">
+                                <img class="imgCircle responsive-img" src="https://res.cloudinary.com/dea6cvtau/image/upload/v{{user.picVersion}}/{{user.picId}}">
+                            </div> 
+                        </a>
+                        <div class="card-action">          <!-- if username not in Likes Array, we will assign the class notLiked, otherwise assigned liked-->
+                           <h3>
+                                {{user.username}}
+                                <i class="fa fa-circle" *ngIf=checkIfOnline(user.username)></i>
+                           </h3>
+                           <p *ngIf="user.city">{{user.city}}, {{user.country}}</p>
+                           <button class="btn" (click)="followUser(user)" *ngIf="!checkInArray(userArr, user._id)">Follow</button>
+          <!--????????-->  <button class="btn diabled following" *ngIf="checkInArray(userArr, user._id)">Following</button>
+                            <a class="secondary-content" [routerLink]="['/chat'， user.username]">
+                                <i class="material-icons">chat</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

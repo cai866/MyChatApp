@@ -1,0 +1,35 @@
+<ul class="collection col s12 m12 l10" *ngFor="let post of topPosts">
+
+    <li class="collection-item avatar">
+      <img src="https://res.cloudinary.com/dea6cvtau/image/upload/v{{post.user.picVersion}}/{{post.user.picId}}" class="circle">
+      <span class="title">{{post.username}}</span>
+      <p class="time">{{TimeFromNow(post.created)}}<br>
+         Country
+      </p>
+    
+    </li>
+
+    <div class="row">
+        <div class="col s12">
+
+            <div class="card">
+               <!-- <div class="card-image">
+                    <img class="postImage" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FImage&psig=AOvVaw0C4T7-XHX58H0rwxl8H3q4&ust=1594472479207000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNCi-f_ewuoCFQAAAAAdAAAAABAN" alt="">
+                </div> -->
+                <div class="card-content">
+                    <p>{{post.post}}</p>
+                </div>
+                
+                <div class="card-action">          <!-- if username not in Likes Array, we will assign the class notLiked, otherwise assigned liked-->
+                    <i (click) = "likePost(post)" [ngClass]="(!checkInLikesArray(post.likes, user.username)) ? 'notLiked' : 'liked'" class="material-icons">thumb_up</i>
+                    <span class="iconSpan">{{post.totalLikes}}</span>
+
+                    <i class="material-icons" (click)="openCommentBox(post)" [ngClass]="(!checkInLikesArray(post.comments, user.username)) ? 'notLiked' : 'liked'">chat</i>
+                    <span class="iconSpan" >{{post.comments.length}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+  </ul>

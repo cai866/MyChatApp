@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col s10 offset-s1" id="panel">
+            <div class="progress" *ngIf="showSpinner">
+              <div class="indeterminate"></div>
+            </div>
+            <h5 id="title">Sign Up</h5>
+            <!--show the error message from server( caused by Joi or repeated database user data)-->
+            <div id="errorMsg" *ngIf="errorMessage">
+              <span>{{errorMessage}}</span>
+            </div>
+            <form class="col s12" [formGroup]="signupForm" novalidate (ngSubmit)="signupUser()">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="user_name" type="text" formControlName="username">
+                    <label for="user_name">User Name</label>
+                    <span class="error" *ngIf="!signupForm.controls['username'].valid && signupForm.controls['username'].touched">
+                      username is required!
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="signup_password" type="password" formControlName="signuppassword">
+                    <label for="signup_password">Password</label>
+                    <span class="error" *ngIf="!signupForm.controls['signuppassword'].valid && signupForm.controls['signuppassword'].touched">
+                      password is required!
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="email" type="email" formControlName="email"> 
+                    <label for="email">Email</label>
+                    <span class="error" *ngIf="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+                      email is required!
+                    </span>
+                  </div>
+                </div>
+                <button class="btn waves-effect" id="signupbtn" [disabled]="!signupForm.valid">Sign Up</button>
+              </form>
+        </div>
+    </div>
+</div>

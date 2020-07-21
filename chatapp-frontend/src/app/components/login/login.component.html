@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col s10 offset-s1" id="panel">
+            <div class="progress" *ngIf="showSpinner">
+              <div class="indeterminate"></div>
+            </div>
+            <h5 id="title">Login</h5>
+            <!--show the error message from server( caused by Joi or repeated database user data)-->
+            <div id="errorMsg" *ngIf="errorMessage">
+              <span>{{errorMessage}}</span>
+            </div>
+            <form class="col s12" [formGroup]="loginForm" novalidate (ngSubmit)="loginUser()">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="username" type="text" formControlName="username">
+                    <label for="username">User Name</label>
+                    <span class="error" *ngIf="!loginForm.controls['username'].valid && loginForm.controls['username'].touched">
+                      username is required!
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="password" type="password" formControlName="password">
+                    <label for="password">Password</label>
+                    <span class="error" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+                      password is required!
+                    </span>
+                  </div>
+                </div>    
+                <button class="btn waves-effect" id="loginbtn">Login</button>
+              </form>
+        </div>
+    </div>
+</div>

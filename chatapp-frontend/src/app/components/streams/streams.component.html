@@ -1,0 +1,37 @@
+<app-toolbar></app-toolbar>
+
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col s12 m4 l3">
+            <app-side></app-side>
+        </div>
+
+        <div class="col s12 m8 l9">
+            <div class="row">
+
+                <div class="col s12 m12 l10">
+                    <ul class="tabs">
+                        <li class="tab col s6" (click)="changeTabs('streams')">
+                            <a href="#streams" class="active">Streams</a>
+                        </li>
+                        <li class="tab col s6" (click)="changeTabs('top')">
+                            <a href="#top">Top Streams</a>
+                        </li>
+                    </ul>
+                </div>
+        
+                <div class="col s12" id="streams" *ngIf="streamsTab">
+                    <app-post-form></app-post-form>
+                    <app-posts></app-posts>
+                </div>
+        
+                <div class="col s12" id="top" *ngIf="topStreamsTab">
+                    <app-top-streams></app-top-streams>
+                </div>
+
+            </div>
+        </div>
+
+        
+    </div>
+</div>

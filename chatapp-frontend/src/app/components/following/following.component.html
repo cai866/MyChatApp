@@ -1,0 +1,40 @@
+<app-toolbar></app-toolbar>
+
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col s12 m4 l3">
+            <app-side></app-side>
+        </div>
+        
+        <div class="col s12 m8 l9">
+            <div class="row" *ngIf="followings.length > 0">
+                <div class="col s12 m6 l4 cardDiv" *ngFor="let user of followings">
+
+                    <div class="card">
+
+                        <a>
+                            <div class="card-image imgDiv">
+                                <img class="imgCircle responsive-img" src="https://res.cloudinary.com/dea6cvtau/image/upload/v{{user.userFollowed.picVersion}}/{{user.userFollowed.picId}}">
+                            </div> 
+                        </a>
+
+                        <div class="card-action">          <!-- if username not in Likes Array, we will assign the class notLiked, otherwise assigned liked-->
+                           <h3 class="card-title">
+                                {{user.userFollowed.username}}
+                           </h3>
+                           <p *ngIf="user.userFollowed.city">{{user.userFollowed.city}}, {{user.userFollowed.country}}</p>
+                           <button class="btn" (click)="unFollow(user.userFollowed)">UnFollow</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" *ngIf="followings.length <= 0"> 
+                <h3 class="text">You have not followed any user</h3>
+            </div>
+
+        </div>
+    </div>
+</div>
