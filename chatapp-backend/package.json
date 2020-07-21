@@ -1,0 +1,27 @@
+{
+  "name": "chatapp-backend",
+  "version": "1.0.0",
+  "description": "chatapp backend with node.js, express, mongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chao Cai",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.22.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.21",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
+  }
+}
